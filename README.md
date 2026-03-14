@@ -18,7 +18,9 @@
 
 <br>
 
-Welcome to **Grocery Scanner AI**! This project replaces manual barcode scanning with entirely visual grocery shelf analysis. Using Google's cutting-edge **Gemini 2.5 Flash** vision models and a robust multi-agent architecture, the scanner reads entire supermarket shelves, identifies products, reverse-lookups their nutritional value via *Open Food Facts*, and generates real-time AR-style UI health indicators right over your camera feed.
+Welcome to **Grocery Scanner AI**! We're all drowning in products in supermarkets, and most of which we do not even know what they do to our bodies. This app clearly marks the healthy ones without even having to scan their barcodes.
+
+Using Google's cutting-edge **Gemini 2.5 Flash** vision models and a robust multi-agent architecture, the scanner reads entire supermarket shelves, identifies products, reverse-lookups their nutritional value via *Open Food Facts*, and generates real-time AR-style UI health indicators right over your camera feed.
 
 If you are a developer interested in LLM Orchestration, Computer Vision, or just making food healthier, **we want your help to build this!**
 
