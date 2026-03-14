@@ -4,7 +4,7 @@ require('dotenv').config();
 
 async function run() {
   const agent = new VisionAgent(process.env.GEMINI_API_KEY);
-  const imagePath = '/Users/mmooslechner/Downloads/2022-09-05-billa-pflanzilla-01 (1).jpg';
+  const imagePath = process.argv[2] || './sample-shelf-image.jpg';
   
   if (!fs.existsSync(imagePath)) {
     console.error('Image not found:', imagePath);

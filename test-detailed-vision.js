@@ -3,7 +3,7 @@ const fs = require('fs');
 const DetailedVisionAgent = require('./agents/detailedVisionAgent');
 
 async function testDetailedVision() {
-  const imagePath = process.argv[2] || '/Users/mmooslechner/Downloads/2022-09-05-billa-pflanzilla-01 (1).jpg';
+  const imagePath = process.argv[2] || './sample-shelf-image.jpg';
   
   if (!fs.existsSync(imagePath)) {
     console.error(`Error: Could not find image at ${imagePath}`);
