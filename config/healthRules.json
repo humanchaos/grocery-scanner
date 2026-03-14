@@ -1,0 +1,47 @@
+{
+  "thresholds": {
+    "sugar_per_100g": {
+      "healthy": 5,
+      "moderate": 10,
+      "unit": "g"
+    },
+    "saturated_fat_per_100g": {
+      "healthy": 2,
+      "moderate": 5,
+      "unit": "g"
+    },
+    "sodium_per_100g": {
+      "healthy": 0.3,
+      "moderate": 1.0,
+      "unit": "g"
+    },
+    "additives_count": {
+      "healthy": 2,
+      "moderate": 5,
+      "unit": "count"
+    },
+    "nutri_score": {
+      "healthy": ["a", "b"],
+      "moderate": ["c"],
+      "unhealthy": ["d", "e"]
+    },
+    "nova_group": {
+      "healthy": [1],
+      "moderate": [2, 3],
+      "unhealthy": [4]
+    }
+  },
+  "weights": {
+    "sugar": 20,
+    "saturated_fat": 15,
+    "sodium": 15,
+    "nutri_score": 20,
+    "nova_group": 20,
+    "additives": 10
+  },
+  "verdicts": {
+    "healthy": { "min_score": 70, "color": "#22c55e", "label": "Healthy" },
+    "moderate": { "min_score": 40, "color": "#eab308", "label": "Moderate" },
+    "unhealthy": { "min_score": 0, "color": "#ef4444", "label": "Unhealthy" }
+  }
+}

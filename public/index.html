@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="Scan grocery shelves with your phone camera to instantly identify healthy vs unhealthy products">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Grocery Scanner — Smart Health Scanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loader-content">
+      <div class="pulse-ring"></div>
+      <div class="loader-icon">🛒</div>
+      <p class="loader-text">Initializing Scanner...</p>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app hidden">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1 class="logo">
+          <span class="logo-icon">🔬</span>
+          <span class="logo-text">GroceryScan</span>
+        </h1>
+        <div class="header-right">
+          <select id="langSelector" class="lang-selector" aria-label="Language">
+            <option value="en">🇬🇧 EN</option>
+            <option value="de">🇩🇪 DE</option>
+            <option value="fr">🇫🇷 FR</option>
+            <option value="es">🇪🇸 ES</option>
+            <option value="it">🇮🇹 IT</option>
+            <option value="nl">🇳🇱 NL</option>
+            <option value="pt">🇵🇹 PT</option>
+            <option value="pl">🇵🇱 PL</option>
+            <option value="sv">🇸🇪 SV</option>
+          </select>
+          <div class="header-badge" id="agentStatus">
+            <span class="status-dot"></span>
+            <span>Ready</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Camera View -->
+    <section id="cameraSection" class="camera-section">
+      <div class="camera-container">
+        <video id="cameraFeed" autoplay playsinline></video>
+        <canvas id="overlayCanvas" class="overlay-canvas"></canvas>
+
+        <!-- Camera Frame Guide -->
+        <div class="camera-frame">
+          <div class="frame-corner tl"></div>
+          <div class="frame-corner tr"></div>
+          <div class="frame-corner bl"></div>
+          <div class="frame-corner br"></div>
+        </div>
+
+        <!-- Scan Button -->
+        <div class="camera-controls">
+          <button id="captureBtn" class="capture-btn" aria-label="Scan products">
+            <div class="capture-ring"></div>
+            <div class="capture-inner">
+              <span class="capture-icon">⊙</span>
+            </div>
+            <span id="queueBadge" class="queue-badge hidden">0</span>
+          </button>
+          <p id="captureHint" class="capture-hint">Point at shelf & tap to scan</p>
+          <button id="viewResultsBtn" class="view-results-btn hidden">
+            <span>📊</span> View Results (<span id="resultCount">0</span>)
+          </button>
+        </div>
+
+        <!-- Scan Queue List -->
+        <div id="scanQueueList" class="scan-queue-list hidden">
+          <div class="queue-thumbnails" id="queueThumbnails"></div>
+        </div>
+
+        <!-- Scanning Progress Bar -->
+        <div id="scanAnimation" class="scan-animation hidden">
+          <div class="scanline"></div>
+          <div class="scan-progress-container">
+            <div class="scan-progress-bar">
+              <div id="scanProgressFill" class="scan-progress-fill"></div>
+            </div>
+            <span id="scanStatusText" class="scan-status-text">Scanning...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- File upload fallback -->
+      <div class="upload-fallback">
+        <label for="fileInput" class="upload-label">
+          <span>📁</span> Or upload an image
+        </label>
+        <input type="file" id="fileInput" accept="image/*" capture="environment" class="file-input">
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="resultsSection" class="results-section hidden">
+      <!-- Result Image with Overlays -->
+      <div class="result-image-container">
+        <canvas id="resultCanvas" class="result-canvas"></canvas>
+        <button id="backBtn" class="back-btn" aria-label="Back to camera">← Scan Again</button>
+      </div>
+
+      <!-- Stats Bar -->
+      <div id="statsBar" class="stats-bar"></div>
+
+      <!-- Product Cards -->
+      <div id="productCards" class="product-cards"></div>
+
+      <!-- Timing Info -->
+      <div id="timingInfo" class="timing-info"></div>
+
+      <!-- Download Results -->
+      <button id="downloadBtn" class="download-btn">
+        <span>📄</span> Download Results
+      </button>
+    </section>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="error-toast hidden">
+      <span id="errorText"></span>
+      <button id="errorClose" class="error-close">✕</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
